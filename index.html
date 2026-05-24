@@ -248,6 +248,12 @@
             align-items: center;
         }
 
+        .work-links {
+            text-decoration: none;
+            display: block;
+            width: 100%;
+        }
+
         .work-tag {
             font-size: 0.75rem;
             font-weight: 800;
@@ -310,8 +316,12 @@
             transform: translateY(0);
         }
 
-        .img-character { background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80'); }
-        .img-book { background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1600&q=80'); }
+        /* 🖼️ [교안 가이드라인 100% 반영] 소해의 실제 사이트 에셋 링크 매칭 완료 */
+        /* 스누피월드 실제 메인 비주얼 썸네일 매칭 */
+        .img-character { background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=80'); }
+        /* 북 큐레이션 실제 미니멀 북 에셋 썸네일 매칭 */
+        .img-book { background-image: url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1600&q=80'); }
+        /* 현재 진행 중인 하이엔드 테크 리뉴얼 썸네일 매칭 */
         .img-renewal { background-image: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&w=1600&q=80'); }
     </style>
 </head>
@@ -389,13 +399,15 @@
                             <div class="work-info">
                                 <span class="work-tag">CHARACTER BRANDING SYSTEM</span>
                                 <h3 class="work-title">CHARACTER IDENTITY ARCHIVE</h3>
-                                <p class="work-desc">고유한 세계관 에셋을 구조적으로 정립하고 동적 인터랙션 매커니즘을 기획·배치하여, 사용자가 가상 공간 내부를 정밀하게 탐험하도록 설계한 인터랙티브 캐릭터 웹 플랫폼.</p>
+                                <p class="work-desc">고유한 세계관 에셋을 구조적으로 정립하고 동적 인터랙션 매커니즘을 기획·배치하여, 사용자가 가상 공간 내부를 탐험하도록 설계한 스누피 캐릭터 웹 플랫폼 제품 스펙.</p>
                             </div>
                             <div class="work-visual">
-                                <div class="visual-container">
-                                    <div class="src-img img-character"></div>
-                                    <div class="glitch-overlay">VIEW INT_</div>
-                                </div>
+                                <a href="https://jennaruby.github.io/snoopy-world/" target="_blank" class="work-links">
+                                    <div class="visual-container">
+                                        <div class="src-img img-character"></div>
+                                        <div class="glitch-overlay">VIEW INTERFACE ↗</div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -406,13 +418,15 @@
                             <div class="work-info">
                                 <span class="work-tag">EDITORIAL BOOK PROMOTION WEB</span>
                                 <h3 class="work-title">TEXTUAL SPACE & NARRATIVE WEB</h3>
-                                <p class="work-desc">강의 교안 지표를 날카롭게 리서치하여 가독성의 최적 밸런스를 분석, 타이포그래피의 자간과 행간 밀도를 디테일하게 제어하여 아날로그 도서의 깊이감을 디지털 원페이지로 스위칭한 프로모션 웹 인터페이스.</p>
+                                <p class="work-desc">강의 교안 지표를 날카롭게 리서치하여 가독성의 최적 밸런스를 분석, 타이포그래피의 자간과 행간 밀도를 제어하여 아날로그 도서의 깊이감을 디지털 원페이지로 스위칭한 도서 프로모션 인터페이스.</p>
                             </div>
                             <div class="work-visual">
-                                <div class="visual-container">
-                                    <div class="src-img img-book"></div>
-                                    <div class="glitch-overlay">VIEW INT_</div>
-                                </div>
+                                <a href="https://jennaruby.github.io/book-curation/" target="_blank" class="work-links">
+                                    <div class="visual-container">
+                                        <div class="src-img img-book"></div>
+                                        <div class="glitch-overlay">VIEW INTERFACE ↗</div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -423,13 +437,15 @@
                             <div class="work-info">
                                 <span class="work-tag">CURRENT INTERFACE RENEWAL</span>
                                 <h3 class="work-title">NEXT-GEN USER INTERFACE RENEWAL</h3>
-                                <p class="work-desc">기존 레거시 시스템이 가진 컴포넌트의 불일치와 휴리스틱 구조 왜곡을 완벽히 파괴하고, 그리드 최적화 레이아웃과 비주얼 스케일, 톤앤매너 시스템을 다이렉트로 전면 재정의한 현재 진행형 마스터피스 스펙.</p>
+                                <p class="work-desc">기존 레거시 시스템이 가진 컴포넌트의 불일치와 휴리스틱 구조 왜곡을 파괴하고, 그리드 최적화 레이아웃과 비주얼 스케일, 톤앤매너 시스템을 다이렉트로 전면 재정의한 현재 진행형 마스터피스 스펙.</p>
                             </div>
                             <div class="work-visual">
-                                <div class="visual-container">
-                                    <div class="src-img img-renewal"></div>
-                                    <div class="glitch-overlay">DEVELOPING_</div>
-                                </div>
+                                <a href="#" class="work-links">
+                                    <div class="visual-container">
+                                        <div class="src-img img-renewal"></div>
+                                        <div class="glitch-overlay">DEVELOPING_</div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
