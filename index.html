@@ -131,5 +131,62 @@
 
     </div>
 
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // 메인 글자 타이포 스크롤 시차 연산
+        gsap.utils.toArray('.split-txt').forEach((text, i) => {
+            gsap.to(text, {
+                scrollTrigger: {
+                    trigger: "#hero",
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: 1.2
+                },
+                y: (i + 1) * -60,
+                opacity: 0.2,
+                scale: 0.95
+            });
+        });
+
+        // 뒷배경 그리드 왜곡 무브먼트
+        gsap.to(".interactive-grid-lines", {
+            scrollTrigger: {
+                trigger: "#hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            x: -100,
+            opacity: 0.3
+        });
+
+        // 역량 컴포넌트 활성화 스위치
+        ScrollTrigger.create({
+            trigger: "#about",
+            start: "top 70%",
+            onEnter: () => {
+                document.querySelector('.fill-1').style.width = '95%';
+                document.querySelector('.fill-2').style.width = '90%';
+            }
+        });
+
+        // [The Boat 오마주] 스크롤 마스크 왜곡 알고리즘
+        gsap.utils.toArray('.work-item').forEach((item) => {
+            gsap.fromTo(item.querySelector('.src-img'), 
+                { y: "15%" }, 
+                {
+                    y: "-15%",
+                    scrollTrigger: {
+                        trigger: item,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 0.5
+                    },
+                    ease: "none"
+                }
+            );
+        });
+    </script>
 </body>
 </html>
