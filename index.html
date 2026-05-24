@@ -2,516 +2,96 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>PARK SOHAE // INTERACTIVE INTERFACE ARCHIVE</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #030304; 
-            color: #F0F0F3; 
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            letter-spacing: -0.05em;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1520px; 
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-
-        .container-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* GNB: 익스트림 미니멀 레이아웃 */
-        .gnb {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            z-index: 9999;
-            background-color: rgba(3, 3, 4, 0.5);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-            display: flex;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 900;
-            font-size: 0.9rem;
-            color: #00FFCC; 
-            letter-spacing: 0.05em;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #555558;
-            margin-left: 60px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nav-links a:hover {
-            color: #00FFCC;
-        }
-
-        /* Panel & 패럴랙스 기초 라인 */
-        .panel {
-            width: 100%;
-            min-height: 100vh;
-            padding: 160px 0;
-            position: relative;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        .interactive-grid-lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
-            background-size: 12.5%; 
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* HERO SECTION 타이포 판형 */
-        .meta-tag {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #00FFCC;
-            letter-spacing: 0.15em;
-            margin-bottom: 24px;
-        }
-
-        .giant-title {
-            font-size: 9.5rem; 
-            line-height: 0.85;
-            font-weight: 900;
-            letter-spacing: -0.07em;
-            color: #FFF;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .text-stroke {
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-        }
-
-        .hero-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-top: 80px;
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: #8E8E93;
-            max-width: 640px;
-            line-height: 1.7;
-        }
-
-        .scroll-trigger-indicator {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #00FFCC;
-            letter-spacing: 0.05em;
-        }
-
-        .indicator-line {
-            width: 40px;
-            height: 1px;
-            background-color: #00FFCC;
-        }
-
-        /* ABOUT SECTION */
-        .section-meta {
-            font-size: 0.8rem;
-            font-weight: 800;
-            color: #555;
-            margin-bottom: 40px;
-            letter-spacing: 0.1em;
-        }
-
-        .about-flex {
-            display: flex;
-            justify-content: space-between;
-            gap: 100px;
-        }
-
-        .about-sticky-left .section-title {
-            font-size: 4rem;
-            line-height: 1.0;
-            font-weight: 900;
-            color: #FFF;
-        }
-
-        .about-content-right {
-            max-width: 720px;
-        }
-
-        .bio-headline {
-            font-size: 2.2rem;
-            font-weight: 900;
-            line-height: 1.4;
-            color: #FFF;
-            margin-bottom: 32px;
-        }
-
-        .bio-headline .highlight {
-            color: #00FFCC;
-            text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
-        }
-
-        .paragraph {
-            font-size: 1.15rem;
-            line-height: 1.75;
-            color: #A1A1AA;
-            margin-bottom: 60px;
-        }
-
-        .technical-skills {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-        }
-
-        .skill-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .skill-bar-bg {
-            width: 100%;
-            height: 1px; 
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            background-color: #00FFCC;
-            width: 0;
-            transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* PROJECTS ARCHIVE LIST */
-        .interactive-list {
-            display: flex;
-            flex-direction: column;
-            margin-top: 60px;
-        }
-
-        .work-item {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 80px 0;
-            display: flex;
-            gap: 40px;
-        }
-
-        .work-num {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: #333;
-        }
-
-        .work-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.1fr;
-            gap: 80px;
-            width: 100%;
-            align-items: center;
-        }
-
-        .work-links {
-            text-decoration: none;
-            display: block;
-            width: 100%;
-        }
-
-        .work-tag {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: #00FFCC;
-            letter-spacing: 0.1em;
-        }
-
-        .work-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #FFF;
-            margin: 16px 0 24px 0;
-        }
-
-        .work-desc {
-            color: #88888F;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        .visual-container {
-            position: relative;
-            width: 100%;
-            height: 480px;
-            overflow: hidden;
-            background-color: #0A0A0C;
-        }
-
-        .src-img {
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(100%) contrast(120%);
-            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s;
-        }
-
-        .glitch-overlay {
-            position: absolute;
-            bottom: 30px;
-            right: 30px;
-            background-color: #00FFCC;
-            color: #030304;
-            padding: 10px 20px;
-            font-size: 0.8rem;
-            font-weight: 900;
-            letter-spacing: 0.05em;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .work-item:hover .src-img {
-            transform: scale(1.05) rotate(0.5deg);
-            filter: grayscale(0%) contrast(100%);
-        }
-
-        .work-item:hover .glitch-overlay {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 🖼️ [교안 가이드라인 100% 반영] 소해의 실제 사이트 에셋 링크 매칭 완료 */
-        /* 스누피월드 실제 메인 비주얼 썸네일 매칭 */
-        .img-character { background-image: url('https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=1600&q=80'); }
-        /* 북 큐레이션 실제 미니멀 북 에셋 썸네일 매칭 */
-        .img-book { background-image: url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1600&q=80'); }
-        /* 현재 진행 중인 하이엔드 테크 리뉴얼 썸네일 매칭 */
-        .img-renewal { background-image: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&w=1600&q=80'); }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Web Designer | Sohae Park</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header class="gnb">
-        <div class="container container-flex">
-            <div class="logo">SOHAE PARK [©2026]</div>
-            <nav class="nav-links">
-                <a href="#hero" class="nav-item">INDEX</a>
-                <a href="#about" class="nav-item">BIOGRAPHY</a>
-                <a href="#projects" class="nav-item">WORK SYSTEM</a>
-            </nav>
-        </div>
+    <header>
+        <div class="logo">Sohae.Park</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+        </nav>
     </header>
 
-    <div id="scroll-wrapper">
-        
-        <section id="hero" class="panel">
-            <div class="interactive-grid-lines"></div>
-            <div class="container">
-                <div class="hero-content">
-                    <div class="meta-tag">// DESIGN ARCHITECT: PARK SOHAE</div>
-                    <h1 class="giant-title">
-                        <span class="split-txt">SOHAE</span>
-                        <span class="split-txt text-stroke">PARK</span>
-                        <span class="split-txt">CORE</span>
-                    </h1>
-                    <div class="hero-footer">
-                        <p class="hero-desc">인터랙티브 웹 모션 아키텍처를 기반으로 설계된 1920px 원페이지 스펙입니다. 단순한 시각적 유희를 넘어 인터페이스의 한계를 파괴하고, 지속성(Persistence)을 갖춘 최적화된 유저 경험을 증명합니다.</p>
-                        <div class="scroll-trigger-indicator">
-                            <div class="indicator-line"></div>
-                            <span>SCROLL TO EXPLORE ARCHIVE</span>
-                        </div>
-                    </div>
-                </div>
+    <section id="about" class="hero-section">
+        <div class="hero-content">
+            <p class="sub-title">UX/UI & Web Design Portfolio</p>
+            <h1>사용자의 경험을 시각적 가치로 전환하는<br><span>웹 디자이너 박소해</span>입니다.</h1>
+            <p class="intro-text">
+                복잡한 요구사항을 명확한 비주얼 구조로 시각화하고, 
+                사용자가 편안하게 머무를 수 있는 인터페이스를 설계합니다.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn primary">프로젝트 보기</a>
+                <a href="#skills" class="btn secondary">보유 역량 확인</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="about" class="panel">
-            <div class="container">
-                <div class="section-meta">01 / BIOGRAPHY</div>
-                <div class="about-flex">
-                    <div class="about-sticky-left">
-                        <h2 class="section-title">ENGINEERED<br>AESTHETICS.</h2>
-                    </div>
-                    <div class="about-content-right">
-                        <div class="bio-headline">인터페이스의 한계를 파괴하는 디지털 크리에이터, <br><span class="highlight">박소해</span>입니다.</div>
-                        <p class="paragraph">IT 실무 생태계의 정밀한 개발 구조 메커니즘을 완벽히 이해하고, 웹 디자인 에셋의 데이터 최적화를 고려한 가상 레이아웃을 설계합니다. 단순한 미학적 장식을 배제하고 프론트엔드의 구동 퍼포먼스 파라미터를 계산하여 시각적 타당성과 정밀함을 확보하는 하이엔드 아카이빙을 구축합니다.</p>
-                        
-                        <div class="technical-skills">
-                            <div class="skill-row">
-                                <div class="skill-meta"><span>DYNAMIC MOTION SPEC</span><span>95%</span></div>
-                                <div class="skill-bar-bg"><div class="skill-bar-fill fill-1"></div></div>
-                            </div>
-                            <div class="skill-row">
-                                <div class="skill-meta"><span>UX ARCHITECTURE LOGIC</span><span>90%</span></div>
-                                <div class="skill-bar-bg"><div class="skill-bar-fill fill-2"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section id="skills" class="skills-section">
+        <h2 class="section-title">Core Capabilities</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-figma"></i>
+                <h3>Figma</h3>
+                <p>컴포넌트 기반의 고도화된 UI/UX 프로토타이핑 및 웹·앱 인터페이스 설계</p>
             </div>
-        </section>
-
-        <section id="projects" class="panel">
-            <div class="container">
-                <div class="section-meta">02 / WORK ARCHIVE</div>
-                
-                <div class="interactive-list">
-                    
-                    <div class="work-item">
-                        <div class="work-num">01_</div>
-                        <div class="work-grid">
-                            <div class="work-info">
-                                <span class="work-tag">CHARACTER BRANDING SYSTEM</span>
-                                <h3 class="work-title">CHARACTER IDENTITY ARCHIVE</h3>
-                                <p class="work-desc">고유한 세계관 에셋을 구조적으로 정립하고 동적 인터랙션 매커니즘을 기획·배치하여, 사용자가 가상 공간 내부를 탐험하도록 설계한 스누피 캐릭터 웹 플랫폼 제품 스펙.</p>
-                            </div>
-                            <div class="work-visual">
-                                <a href="https://jennaruby.github.io/snoopy-world/" target="_blank" class="work-links">
-                                    <div class="visual-container">
-                                        <div class="src-img img-character"></div>
-                                        <div class="glitch-overlay">VIEW INTERFACE ↗</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-item">
-                        <div class="work-num">02_</div>
-                        <div class="work-grid">
-                            <div class="work-info">
-                                <span class="work-tag">EDITORIAL BOOK PROMOTION WEB</span>
-                                <h3 class="work-title">TEXTUAL SPACE & NARRATIVE WEB</h3>
-                                <p class="work-desc">강의 교안 지표를 날카롭게 리서치하여 가독성의 최적 밸런스를 분석, 타이포그래피의 자간과 행간 밀도를 제어하여 아날로그 도서의 깊이감을 디지털 원페이지로 스위칭한 도서 프로모션 인터페이스.</p>
-                            </div>
-                            <div class="work-visual">
-                                <a href="https://jennaruby.github.io/book-curation/" target="_blank" class="work-links">
-                                    <div class="visual-container">
-                                        <div class="src-img img-book"></div>
-                                        <div class="glitch-overlay">VIEW INTERFACE ↗</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="work-item">
-                        <div class="work-num">03_</div>
-                        <div class="work-grid">
-                            <div class="work-info">
-                                <span class="work-tag">CURRENT INTERFACE RENEWAL</span>
-                                <h3 class="work-title">NEXT-GEN USER INTERFACE RENEWAL</h3>
-                                <p class="work-desc">기존 레거시 시스템이 가진 컴포넌트의 불일치와 휴리스틱 구조 왜곡을 파괴하고, 그리드 최적화 레이아웃과 비주얼 스케일, 톤앤매너 시스템을 다이렉트로 전면 재정의한 현재 진행형 마스터피스 스펙.</p>
-                            </div>
-                            <div class="work-visual">
-                                <a href="#" class="work-links">
-                                    <div class="visual-container">
-                                        <div class="src-img img-renewal"></div>
-                                        <div class="glitch-overlay">DEVELOPING_</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+            <div class="skill-card">
+                <i class="fas fa-palette"></i>
+                <h3>Photoshop</h3>
+                <p>브랜드 아이덴티티를 녹여낸 정교한 비주얼 에셋 및 그래픽 리터칭</p>
             </div>
-        </section>
+            <div class="skill-card">
+                <i class="fas fa-bezier-curve"></i>
+                <h3>Illustrator</h3>
+                <p>벡터 기반의 깔끔한 브랜드 로고, 아이콘 팩 및 그래픽 일러스트레이션 제작</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>UI Web Design</h3>
+                <p>트렌디한 레이아웃 설계와 직관적인 UX 라이팅을 통한 유저 친화적 웹 구축</p>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <section id="projects" class="projects-section">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <div class="project-badge">Web Design</div>
+                <h3>[웹 디자인] 스누피 캐릭터 브랜드 소개 웹사이트</h3>
+                <p class="en-title">Snoopy World</p>
+                <p class="project-desc">
+                    스누피의 따뜻한 감성을 웹 스페이스에 그대로 녹여낸 브랜딩 페이지입니다. 
+                    비전공자도 3초 만에 브랜딩 컨셉을 이해할 수 있도록 직관적인 UI 스토리텔링에 집중했습니다.
+                </p>
+                <a href="https://jennaruby.github.io/snoopy-world/" target="_blank" class="project-link">Live View <i class="fas fa-arrow-right"></i></a>
+            </div>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+            <div class="project-card">
+                <div class="project-badge">UI/UX Design</div>
+                <h3>[북 큐레이션] 맞춤형 도서 추천 플랫폼 웹사이트</h3>
+                <p class="en-title">Book Curation</p>
+                <p class="project-desc">
+                    복잡한 도서 데이터 속에서 사용자가 원하는 책을 직관적으로 탐색할 수 있도록 돕는 서비스입니다. 
+                    시각적 피로도를 줄이는 정돈된 그리드와 정보 레이아웃 설계가 핵심입니다.
+                </p>
+                <a href="https://jennaruby.github.io/book-curation/" target="_blank" class="project-link">Live View <i class="fas fa-arrow-right"></i></a>
+            </div>
 
-        // 메인 글자 타이포 스크롤 시차 연산
-        gsap.utils.toArray('.split-txt').forEach((text, i) => {
-            gsap.to(text, {
-                scrollTrigger: {
-                    trigger: "#hero",
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: 1.2
-                },
-                y: (i + 1) * -60,
-                opacity: 0.2,
-                scale: 0.95
-            });
-        });
+        </div>
+    </section>
 
-        // 뒷배경 그리드 왜곡 무브먼트
-        gsap.to(".interactive-grid-lines", {
-            scrollTrigger: {
-                trigger: "#hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            },
-            x: -100,
-            opacity: 0.3
-        });
+    <footer>
+        <p>&copy; 2026 Sohae Park. All rights reserved.</p>
+    </footer>
 
-        // 역량 컴포넌트 활성화 스위치
-        ScrollTrigger.create({
-            trigger: "#about",
-            start: "top 70%",
-            onEnter: () => {
-                document.querySelector('.fill-1').style.width = '95%';
-                document.querySelector('.fill-2').style.width = '90%';
-            }
-        });
-
-        // [The Boat 오마주] 스크롤 마스크 왜곡 알고리즘
-        gsap.utils.toArray('.work-item').forEach((item) => {
-            gsap.fromTo(item.querySelector('.src-img'), 
-                { y: "15%" }, 
-                {
-                    y: "-15%",
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 0.5
-                    },
-                    ease: "none"
-                }
-            );
-        });
-    </script>
 </body>
 </html>
