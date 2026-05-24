@@ -5,6 +5,315 @@
     <title>PARK SOHAE // INTERACTIVE INTERFACE ARCHIVE</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #030304; 
+            color: #F0F0F3; 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: -0.05em;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1520px; 
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .container-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* GNB: 익스트림 미니멀 레이아웃 */
+        .gnb {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            z-index: 9999;
+            background-color: rgba(3, 3, 4, 0.5);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 0.9rem;
+            color: #00FFCC; 
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555558;
+            margin-left: 60px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .nav-links a:hover {
+            color: #00FFCC;
+        }
+
+        /* Panel & 패럴랙스 기초 라인 */
+        .panel {
+            width: 100%;
+            min-height: 100vh;
+            padding: 160px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .interactive-grid-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+            background-size: 12.5%; 
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* HERO SECTION 타이포 판형 */
+        .meta-tag {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #00FFCC;
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+        }
+
+        .giant-title {
+            font-size: 9.5rem; 
+            line-height: 0.85;
+            font-weight: 900;
+            letter-spacing: -0.07em;
+            color: #FFF;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .text-stroke {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 80px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #8E8E93;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        .scroll-trigger-indicator {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #00FFCC;
+            letter-spacing: 0.05em;
+        }
+
+        .indicator-line {
+            width: 40px;
+            height: 1px;
+            background-color: #00FFCC;
+        }
+
+        /* ABOUT SECTION */
+        .section-meta {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #555;
+            margin-bottom: 40px;
+            letter-spacing: 0.1em;
+        }
+
+        .about-flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 100px;
+        }
+
+        .about-sticky-left .section-title {
+            font-size: 4rem;
+            line-height: 1.0;
+            font-weight: 900;
+            color: #FFF;
+        }
+
+        .about-content-right {
+            max-width: 720px;
+        }
+
+        .bio-headline {
+            font-size: 2.2rem;
+            font-weight: 900;
+            line-height: 1.4;
+            color: #FFF;
+            margin-bottom: 32px;
+        }
+
+        .bio-headline .highlight {
+            color: #00FFCC;
+            text-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+        }
+
+        .paragraph {
+            font-size: 1.15rem;
+            line-height: 1.75;
+            color: #A1A1AA;
+            margin-bottom: 60px;
+        }
+
+        .technical-skills {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .skill-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .skill-bar-bg {
+            width: 100%;
+            height: 1px; 
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background-color: #00FFCC;
+            width: 0;
+            transition: width 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* PROJECTS ARCHIVE LIST */
+        .interactive-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 60px;
+        }
+
+        .work-item {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 80px 0;
+            display: flex;
+            gap: 40px;
+        }
+
+        .work-num {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 80px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .work-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: #00FFCC;
+            letter-spacing: 0.1em;
+        }
+
+        .work-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #FFF;
+            margin: 16px 0 24px 0;
+        }
+
+        .work-desc {
+            color: #88888F;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .visual-container {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            overflow: hidden;
+            background-color: #0A0A0C;
+        }
+
+        .src-img {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%) contrast(120%);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s;
+        }
+
+        .glitch-overlay {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background-color: #00FFCC;
+            color: #030304;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .work-item:hover .src-img {
+            transform: scale(1.05) rotate(0.5deg);
+            filter: grayscale(0%) contrast(100%);
+        }
+
+        .work-item:hover .glitch-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .img-character { background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80'); }
+        .img-book { background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1600&q=80'); }
+        .img-renewal { background-image: url('https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&w=1600&q=80'); }
+    </style>
 </head>
 <body>
 
