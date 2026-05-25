@@ -173,17 +173,12 @@
         }
         .about-kicker-title em { color:var(--lime); font-style:normal; }
 
-        /* Skills list on left */
-        .skills-list { display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); }
-        .skill-item {
-            padding:14px 0; border-bottom:1px solid var(--line);
-            font-family:'Syne',sans-serif; font-size:.72rem; font-weight:700;
-            letter-spacing:.1em; text-transform:uppercase; color:var(--muted2);
-            display:flex; align-items:center; gap:10px;
-            transition:color .3s;
+        /* About kicker sub-label */
+        .about-kicker-sub {
+            font-family:'Syne',sans-serif; font-size:.6rem; font-weight:700;
+            letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
+            margin-top:4px;
         }
-        .skill-item::before { content:'—'; color:var(--lime); font-size:.6rem; }
-        .skill-item:hover { color:var(--white); }
 
         /* 오른쪽 */
         .about-head {
@@ -500,23 +495,18 @@
         <div class="sec-label" data-n="01 — Biography">About</div>
         <div class="about-grid">
 
-            <!-- 왼쪽: Skills. 키커 + 스킬 목록 -->
+            <!-- 왼쪽: Skills. 키커 -->
             <div class="about-kicker" id="about-kicker">
                 <div class="about-kicker-title">Skills<em>.</em></div>
-                <div class="skills-list">
-                    <div class="skill-item">Figma</div>
-                    <div class="skill-item">Photoshop</div>
-                    <div class="skill-item">Illustrator</div>
-                    <div class="skill-item">UI / UX Design &amp; Strategy</div>
-                </div>
+                <p class="about-kicker-sub">Tools &amp; Capabilities</p>
             </div>
 
             <!-- 오른쪽: 헤드라인(영어) + 소개글(한국어) + 스킬카드 -->
             <div>
                 <!-- 헤드라인 영어로 -->
                 <p class="about-head" id="about-head">
-                    Design is not just what it looks like —<br>
-                    it's how it <strong>feels.</strong>
+                    Everything has a <strong>personality</strong> —<br>
+                    everything sends an <strong>emotional signal.</strong>
                 </p>
                 <!-- 소개글 한국어 유지 -->
                 <p class="about-body" id="about-body">
@@ -528,15 +518,15 @@
                         <p>컴포넌트 기반 디자인 시스템 구축 및 고밀도 인터랙티브 프로토타이핑</p>
                     </div>
                     <div class="skill-card">
-                        <div class="skill-card-name">Creative Dev</div>
-                        <p>GSAP · CSS Animation을 활용한 몰입형 프론트엔드 경험 개발</p>
+                        <div class="skill-card-name">Photoshop</div>
+                        <p>브랜드의 톤앤매너를 시각화하는 고해상도 디지털 리터칭 및 비주얼 제작</p>
                     </div>
                     <div class="skill-card">
-                        <div class="skill-card-name">Photoshop / Illustrator</div>
-                        <p>브랜드 고유의 톤앤매너를 시각화하는 정밀한 디지털 비주얼 제작</p>
+                        <div class="skill-card-name">Illustrator</div>
+                        <p>아이콘, 그래픽 요소 설계 및 인쇄·웹 전반의 벡터 비주얼 제작</p>
                     </div>
                     <div class="skill-card">
-                        <div class="skill-card-name">UI / UX Strategy</div>
+                        <div class="skill-card-name">UI / UX Design &amp; Strategy</div>
                         <p>사용자 여정 분석을 기반으로 한 비주얼 계층 구조 및 그리드 시스템 설계</p>
                     </div>
                 </div>
@@ -709,7 +699,7 @@
 <footer>
     <div class="wrap foot-in">
         <div class="foot-txt">© 2026 Sohae Park</div>
-        <div class="foot-txt">Designed &amp; Built with intention</div>
+        <div class="foot-txt">Design that goes beyond ideas</div>
     </div>
 </footer>
 
@@ -766,7 +756,6 @@ const aT = { trigger:'#about', start:'top 72%' };
 gsap.from('#about-kicker',  { y:60, opacity:0, duration:1.2, ease:'power4.out', scrollTrigger:aT });
 gsap.from('#about-head',    { y:44, opacity:0, duration:1.1, ease:'power4.out', delay:.15, scrollTrigger:aT });
 gsap.from('#about-body',    { y:30, opacity:0, duration:1,   ease:'power3.out', delay:.28, scrollTrigger:aT });
-gsap.from('.skill-item',    { y:20, opacity:0, duration:.7,  ease:'power3.out', stagger:.07, delay:.35, scrollTrigger:aT });
 gsap.from('.skill-card',    { y:36, opacity:0, duration:.9,  ease:'power3.out', stagger:.07, delay:.4,
     scrollTrigger:{ trigger:'#skills-grid', start:'top 82%' }});
 
