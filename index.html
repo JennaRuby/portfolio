@@ -124,7 +124,6 @@
             font-size:clamp(4.2rem, 9.5vw, 11.5rem);
             font-weight:800; line-height:.86; letter-spacing:-.045em; text-transform:uppercase;
         }
-        /* 1번째 라인 — Cormorant 이탤릭으로 DESIGNER 강조 */
         .ht-designer {
             font-family:'Cormorant Garamond',serif;
             font-style:italic; font-weight:300;
@@ -162,7 +161,6 @@
         .about { padding:160px 0; }
         .about-grid { display:grid; grid-template-columns:1fr 1.7fr; gap:80px; align-items:start; }
 
-        /* 왼쪽 — Skills. 키커 */
         .about-kicker {
             position:sticky; top:120px;
         }
@@ -173,14 +171,12 @@
         }
         .about-kicker-title em { color:var(--lime); font-style:normal; }
 
-        /* About kicker sub-label */
         .about-kicker-sub {
             font-family:'Syne',sans-serif; font-size:.6rem; font-weight:700;
             letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
             margin-top:4px;
         }
 
-        /* 오른쪽 */
         .about-head {
             font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:300;
             font-size:clamp(1.9rem, 2.6vw, 2.7rem); line-height:1.32;
@@ -192,7 +188,6 @@
             letter-spacing:.01em; margin-bottom:52px;
         }
 
-        /* 스킬 카드 그리드 (오른쪽 하단) */
         .skills-grid {
             display:grid; grid-template-columns:1fr 1fr;
             gap:1px; background:var(--line); border:1px solid var(--line);
@@ -234,7 +229,6 @@
             letter-spacing:.01em; margin-bottom:28px;
         }
 
-        /* spec 테이블 — 기여도 포함 */
         .spec-row {
             display:flex; flex-wrap:wrap;
             border-top:1px solid var(--line); border-left:1px solid var(--line);
@@ -309,11 +303,6 @@
             transition:opacity .4s var(--ease), transform .4s var(--ease);
         }
         .thumb:hover .thumb-btn { opacity:1; transform:translateY(0); }
-        .thumb-soon {
-            position:absolute; bottom:22px; left:24px;
-            font-family:'Syne',sans-serif; font-size:.62rem;
-            letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
-        }
 
         /* ── Expansion ── */
         .expansion { height:0; opacity:0; overflow:hidden; }
@@ -426,20 +415,6 @@
 <div id="cur"></div>
 <div id="cur2"></div>
 
-<!-- ══ MUSIC PLAYER ══ -->
-<!--
-  ✦ 배경음악 삽입 방법
-  1. 아래 audio 태그의 src에 음악 파일 경로를 넣으세요
-     예: src="assets/music/bg.mp3"
-  2. 무료 음악 추천 사이트:
-     - Pixabay (pixabay.com/music) → "ambient", "dark", "cinematic" 검색
-     - Free Music Archive (freemusicarchive.org) → Genre: Ambient
-     - Uppbeat (uppbeat.io) → "Dark Ambient" or "Minimal Electronic"
-  3. 이 포트폴리오 톤앤매너에 어울리는 추천 키워드:
-     "dark ambient electronic", "minimal cinematic loop",
-     "low pulse drone", "subtle atmospheric synth"
-     → 길이 2~4분, BPM 60~80, 루프용이 좋음
--->
 <audio id="bg-music" loop preload="none">
     <source src="assets/music/bg.mp3" type="audio/mpeg">
 </audio>
@@ -462,7 +437,6 @@
 </header>
 
 <!-- ══ HERO ══ -->
-<!-- 순서 변경: Designer(위) → Sohae / Park(아래) -->
 <section id="hero" class="hero">
     <div class="hero-photo" id="hero-photo"></div>
     <div class="hero-ink"></div>
@@ -472,11 +446,8 @@
     <div class="wrap hero-content">
         <div class="hero-eyebrow" id="hero-eyebrow">Visual Designer — Seoul, KR</div>
         <h1 class="hero-title">
-            <!-- 1. Designer — Cormorant 이탤릭 라임 (구 Interface 위치에서 최상단으로) -->
             <div class="h-line"><span class="h-line-inner ht-designer">Designer</span></div>
-            <!-- 2. SOHAE -->
             <div class="h-line"><span class="h-line-inner">SOHAE</span></div>
-            <!-- 3. PARK (stroke) -->
             <div class="h-line"><span class="h-line-inner ht-stroke">PARK</span></div>
         </h1>
         <div class="hero-bottom">
@@ -495,20 +466,16 @@
         <div class="sec-label" data-n="01 — Biography">About</div>
         <div class="about-grid">
 
-            <!-- 왼쪽: Skills. 키커 -->
             <div class="about-kicker" id="about-kicker">
                 <div class="about-kicker-title">Skills<em>.</em></div>
                 <p class="about-kicker-sub">Tools &amp; Capabilities</p>
             </div>
 
-            <!-- 오른쪽: 헤드라인(영어) + 소개글(한국어) + 스킬카드 -->
             <div>
-                <!-- 헤드라인 영어로 -->
                 <p class="about-head" id="about-head">
                     Everything has a <strong>personality</strong> —<br>
                     everything sends an <strong>emotional signal.</strong>
                 </p>
-                <!-- 소개글 한국어 유지 -->
                 <p class="about-body" id="about-body">
                     저는 화면 너머의 경험을 설계합니다. 컴포넌트의 배치에서 모션까지, 모든 디자인 결정에는 사용자와 타깃층을 향한 명확한 의도가 담겨 있습니다. 다양한 분야의 프로젝트를 진행하며 스펙트럼을 넓혀가고 있는 디자이너입니다.
                 </p>
@@ -590,11 +557,6 @@
                         Curation Space:<br>The Miracle of Namiya
                         <em>Book Showcase Website</em>
                     </h3>
-                    <!--
-                      ✦ '인터페이스'보다 '웹사이트' 또는 '페이지'가 더 자연스럽습니다.
-                         '인터페이스'는 UI 요소(버튼, 화면 구성) 자체를 가리킬 때 쓰이고,
-                         완성된 결과물에는 '웹사이트' / '페이지' / '플랫폼'이 어울려요.
-                    -->
                     <p class="proj-desc">
                         나미야 잡화점의 기적의 감성을 온라인에 옮겨 담은 북 쇼케이스 웹사이트입니다. 책의 서정적인 세계관에 맞춰 별이 반짝이는 파티클 모션과 서정적인 컬러 팔레트를 적용했습니다. 시각적 밀도와 감성적 연출로 책에 대한 궁금증을 불러일으키도록 설계했습니다.
                     </p>
@@ -628,30 +590,42 @@
         </div>
 
         <!-- ── PROJECT 03 ── -->
-        <div class="proj-item" id="item-korean">
+        <div class="proj-item" id="item-royal">
             <div class="proj-grid">
                 <div class="proj-info">
-                    <div class="proj-tag">03 — Heritage Redesign</div>
+                    <div class="proj-tag">03 — Heritage Web Redesign</div>
                     <h3 class="proj-title">
-                        Korean Folk Village:<br>Modern Heritage
-                        <em>Next-Gen Cultural Redesign</em>
+                        Royal Heritage:<br>궁
+                        <em>궁능유적본부 홈페이지 리디자인</em>
                     </h3>
                     <p class="proj-desc">
-                        한국민속촌 웹사이트 고유의 헤리티지를 현대적인 비주얼 정체성으로 재해석한 One-page Redesign 프로젝트입니다. 비정형 다크 테마의 유기적인 UI 인터랙션과 패럴랙스 스크롤 시스템을 정밀하게 설계하여, 사용자가 콘텐츠에 자연스럽게 집중할 수 있는 몰입형 사용자 경험(UX)을 구현했습니다.
+                        국가유산청 궁능유적본부 공식 홈페이지를 MZ 세대를 위한 몰입형 원페이지로 리디자인한 프로젝트입니다. 전통 단청의 5색 팔레트를 현대적으로 재해석하고, Bloomberg 터미널 스타일 HUD 데이터 스트립과 패럴랙스 스크롤 스토리텔링으로 500년 조선의 역사를 한 페이지 여행으로 압축했습니다. 꽃모양 커서·카운트업 애니메이션 등 전통 문양을 인터랙션 언어로 번역한 점이 핵심 차별점입니다.
                     </p>
                     <div class="spec-row">
-                        <div class="spec"><div class="spec-k">Period</div><div class="spec-v">In Progress</div></div>
+                        <div class="spec"><div class="spec-k">Period</div><div class="spec-v">3 Weeks</div></div>
                         <div class="spec"><div class="spec-k">Contribution</div><div class="spec-v">100%</div></div>
-                        <div class="spec"><div class="spec-k">My Role</div><div class="spec-v">Lead UI / UX Designer</div></div>
-                        <div class="spec"><div class="spec-k">Stack</div><div class="spec-v">Figma / ProtoPie</div></div>
+                        <div class="spec"><div class="spec-k">My Role</div><div class="spec-v">UI/UX Designer & Developer</div></div>
+                        <div class="spec"><div class="spec-k">Stack</div><div class="spec-v">HTML / CSS / GSAP</div></div>
                     </div>
                 </div>
-                <div class="thumb" style="cursor:default">
-                    <div class="thumb-photo" style="background-image:url('assets/images/project-03-korean.jpg')"></div>
+                <div class="thumb" onclick="openExp('royal')">
+                    <div class="thumb-photo" style="background-image:url('assets/images/project-03-royal.jpg')"></div>
+                    <div class="thumb-wash"></div>
                     <div class="thumb-scan"></div>
                     <div class="thumb-vig"></div>
+                    <div class="thumb-glint"></div>
                     <div class="thumb-num">03</div>
-                    <div class="thumb-soon">Coming Soon —</div>
+                    <div class="thumb-foot">
+                        <div class="thumb-label">ROYAL HERITAGE PROJECT</div>
+                        <button class="thumb-btn">View Live</button>
+                    </div>
+                </div>
+            </div>
+            <div class="expansion" id="exp-royal">
+                <div class="exp-wrap" id="frame-royal"></div>
+                <div class="exp-actions">
+                    <a href="https://jennaruby.github.io/royal-heritage/#palaces" target="_blank" class="btn-live">Fullscreen ↗</a>
+                    <button class="btn-close" onclick="closeExp('royal')">Close</button>
                 </div>
             </div>
         </div>
@@ -666,10 +640,6 @@
         <div class="contact-grid">
             <div>
                 <div class="sec-label" data-n="03 — Contact" style="margin-bottom:48px">Say Hello</div>
-                <!--
-                  ✦ "We want to talk about your project" 대신
-                    더 자연스럽고 포트폴리오 톤에 맞는 문장으로 교체
-                -->
                 <p class="contact-head" id="contact-head">
                     Have a vision<br>
                     worth bringing<br>
@@ -792,7 +762,8 @@ gsap.from('.contact-cta',  { y:20, opacity:0, duration:.8, ease:'power3.out', de
 /* ── Expansion ── */
 const links = {
     snoopy: 'https://jennaruby.github.io/snoopy-world/',
-    book:   'https://jennaruby.github.io/book-curation/'
+    book:   'https://jennaruby.github.io/book-curation/',
+    royal:  'https://jennaruby.github.io/royal-heritage/#palaces'
 };
 function openExp(id) {
     const exp = document.getElementById('exp-'+id);
