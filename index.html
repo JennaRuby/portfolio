@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@700;800&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@700;800&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Serif+KR:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -214,16 +214,29 @@
             font-family:'Syne',sans-serif; font-size:.6rem; font-weight:700;
             letter-spacing:.18em; text-transform:uppercase; color:var(--lime); margin-bottom:20px;
         }
+        
         .proj-title {
             font-family:'Cormorant Garamond',serif; font-weight:600;
             font-size:clamp(2.2rem, 2.9vw, 3.3rem);
             letter-spacing:-.02em; line-height:1.0; margin-bottom:22px; color:var(--white);
         }
+        
+        /* ── Subtitle Base (영문 이탤릭 유지) ── */
         .proj-title em {
             display:block; font-style:italic; font-weight:300;
             color:var(--muted2); font-size:.72em;
             letter-spacing:.01em; margin-top:8px;
         }
+        
+        /* ── 한글 텍스트 전용 타이포그래피 제어 ── */
+        .proj-title em .ko-txt {
+            font-family: 'Noto Serif KR', serif; /* 클래식하고 유려한 명조체 */
+            font-style: normal; /* 한글 왜곡(Skew) 방지 */
+            font-weight: 400;
+            letter-spacing: -0.04em; /* 밀도 높은 자간으로 정돈된 느낌 부여 */
+            margin-right: 6px; /* 영문과의 시각적 밸런스를 위한 여백 보정 */
+        }
+
         .proj-desc {
             font-size:.85rem; color:var(--muted2); line-height:1.88;
             letter-spacing:.01em; margin-bottom:28px;
@@ -589,7 +602,7 @@
                     <div class="proj-tag">03 — Heritage Web Redesign</div>
                     <h3 class="proj-title">
                         Royal Heritage:<br>Strolling Through the Time of Joseon
-                        <em>궁능유적본부 홈페이지 리디자인</em>
+                        <em><span class="ko-txt">궁능유적본부</span> Website Renewal</em>
                     </h3>
                     <p class="proj-desc">
                         국가유산청 궁능유적본부 공식 웹사이트를 원페이지로 리디자인한 프로젝트입니다. 전통 단청의 5색 팔레트를 현대적으로 재해석하고, Bloomberg 터미널 스타일 HUD 데이터 스트립과 패럴랙스 스크롤 스토리텔링으로 500년 조선의 역사를 한 페이지 여행으로 압축했습니다. 
